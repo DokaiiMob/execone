@@ -1,0 +1,369 @@
+/* Анимации и улучшения пользовательского интерфейса */
+
+/* Глобальные настройки анимаций */
+:root {
+    --anim-duration-fast: 0.2s;
+    --anim-duration-normal: 0.3s;
+    --anim-duration-slow: 0.5s;
+    --anim-timing-function: ease-in-out;
+}
+
+/* Плавные переходы для всех интерактивных элементов */
+a,
+button,
+.btn,
+.card,
+.nav-link,
+.form-control,
+.dropdown-item {
+    transition: all var(--anim-duration-normal) var(--anim-timing-function);
+}
+
+/* Анимация при наведении на карточки */
+.card {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Улучшенные эффекты для подписок */
+.subscription-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    overflow: hidden;
+}
+
+.subscription-card.featured {
+    position: relative;
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.subscription-card.featured::before {
+    content: '⭐ Рекомендуемый';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transform: translateX(30%) translateY(0%) rotate(45deg);
+    transform-origin: top left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+}
+
+.subscription-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+/* Плавающие метки для форм */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-floating > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 0.75rem;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: opacity .1s ease-in-out, transform .1s ease-in-out;
+}
+
+.form-floating > .form-control,
+.form-floating > .form-select {
+    height: calc(3.5rem + 2px);
+    padding: 1rem 0.75rem;
+}
+
+.form-floating > .form-control:focus,
+.form-floating > .form-control:not(:placeholder-shown),
+.form-floating > .form-select:focus,
+.form-floating > .form-select:not([value=""]):not([value="0"]) {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select:focus ~ label,
+.form-floating > .form-select:not([value=""]):not([value="0"]) ~ label {
+    opacity: .65;
+    transform: scale(.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+/* Улучшенные кнопки */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.btn:hover::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Улучшенные навигационные вкладки */
+.nav-tabs .nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-tabs .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover::before {
+    width: 100%;
+}
+
+.nav-tabs .nav-link.active::before {
+    width: 100%;
+}
+
+/* Пульсирующая анимация для важных элементов */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Пульсирующая кнопка для скачивания */
+.download-btn {
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    border: 2px solid var(--primary-color);
+    animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Прогресс-бар с анимацией */
+.progress {
+    height: 10px;
+    overflow: visible;
+    background-color: #f0f0f0;
+}
+
+.progress-bar {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 50px 50px;
+    animation: move 2s linear infinite;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* Анимация для списков/таблиц */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Задержка анимации для последовательного появления элементов */
+.fade-in-delay:nth-child(1) { animation-delay: 0.1s; }
+.fade-in-delay:nth-child(2) { animation-delay: 0.2s; }
+.fade-in-delay:nth-child(3) { animation-delay: 0.3s; }
+.fade-in-delay:nth-child(4) { animation-delay: 0.4s; }
+.fade-in-delay:nth-child(5) { animation-delay: 0.5s; }
+.fade-in-delay:nth-child(6) { animation-delay: 0.6s; }
+.fade-in-delay:nth-child(7) { animation-delay: 0.7s; }
+.fade-in-delay:nth-child(8) { animation-delay: 0.8s; }
+.fade-in-delay:nth-child(9) { animation-delay: 0.9s; }
+.fade-in-delay:nth-child(10) { animation-delay: 1s; }
+
+/* Скользящая анимация для модальных окон */
+.modal.fade .modal-dialog {
+    transform: translate(0, -50px);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: translate(0, 0);
+}
+
+/* Шкала загрузки */
+.upload-progress {
+    width: 100%;
+    height: 4px;
+    margin-top: 10px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.upload-progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+/* Улучшенный skeleton loader для контента */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton-text {
+    height: 1em;
+    margin-bottom: 0.5em;
+}
+
+.skeleton-heading {
+    height: 1.5em;
+    margin-bottom: 1em;
+}
+
+.skeleton-image {
+    aspect-ratio: 16/9;
+    width: 100%;
+}
+
+.skeleton-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .subscription-card.featured::before {
+        transform: translateX(30%) translateY(0%) rotate(45deg);
+        padding: 3px 12px;
+        font-size: 0.7rem;
+    }
+}

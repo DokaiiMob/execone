@@ -1,0 +1,258 @@
+/* Темная тема для сайта */
+
+[data-theme="dark"] {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #f39c12;
+    --danger-color: #e74c3c;
+    --dark-color: #1a1a1a;
+    --light-color: #333333;
+    --text-color: #f0f0f0;
+    --bg-color: #121212;
+    --card-bg: #242424;
+    --card-border: #333333;
+    --input-bg: #333333;
+    --input-text: #f0f0f0;
+    --input-border: #444444;
+    --nav-bg: #1a1a1a;
+    --footer-bg: #1a1a1a;
+}
+
+/* Основные стили для темной темы */
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Шапка сайта */
+[data-theme="dark"] .navbar {
+    background-color: var(--nav-bg) !important;
+}
+
+/* Подвал сайта */
+[data-theme="dark"] footer {
+    background-color: var(--footer-bg);
+    color: var(--text-color);
+}
+
+/* Карточки */
+[data-theme="dark"] .card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+[data-theme="dark"] .card-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom-color: var(--card-border);
+}
+
+/* Формы ввода */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--primary-color);
+}
+
+/* Таблицы */
+[data-theme="dark"] .table {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+/* Модальные окна */
+[data-theme="dark"] .modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+    border-color: var(--card-border);
+}
+
+/* Аккордеон */
+[data-theme="dark"] .accordion-item {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+[data-theme="dark"] .accordion-button {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .accordion-button::after {
+    filter: invert(1);
+}
+
+/* Навигационные таблицы */
+[data-theme="dark"] .nav-tabs .nav-link {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .nav-tabs .nav-link.active {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--primary-color);
+}
+
+/* Переключатель темы */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider:after {
+    content: '☀️';
+    position: absolute;
+    left: 8px;
+    top: 6px;
+    font-size: 14px;
+}
+
+input:checked + .slider:after {
+    content: '🌙';
+    position: absolute;
+    right: 8px;
+    left: auto;
+    top: 6px;
+    font-size: 14px;
+}
+
+/* Дополнительные стили для специфических элементов */
+[data-theme="dark"] .hero-section {
+    background: linear-gradient(135deg, #1e5799, #4a148c);
+}
+
+[data-theme="dark"] .section-subtitle {
+    color: #aaaaaa;
+}
+
+[data-theme="dark"] .text-muted {
+    color: #bbbbbb !important;
+}
+
+[data-theme="dark"] .bg-light {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .btn-light {
+    background-color: #444444;
+    border-color: #555555;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .btn-outline-light {
+    border-color: #555555;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .btn-outline-light:hover {
+    background-color: #444444;
+    color: var(--text-color);
+}
+
+/* Фиксы для модулей Bootstrap */
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+[data-theme="dark"] .list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-color);
+}
+
+/* Стили для секции API в темной теме */
+.dark-theme .bg-light {
+    background-color: #1f2937 !important;
+}
+
+.dark-theme .list-group-item.bg-transparent {
+    color: #e2e8f0;
+}
+
+.dark-theme pre {
+    background-color: #101827 !important;
+    border: 1px solid #374151;
+    color: #e2e8f0;
+}
+
+.dark-theme .card-body[style*="background-color: #f8f9fa;"] {
+    background-color: #101827 !important;
+}
